@@ -1,0 +1,46 @@
+#!/bin/bash
+#SBATCH -J dummyrun
+#SBATCH -p standard-s
+#SBATCH -o runjob.out
+#SBATCH -e runjob.err
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -c 36
+#SBTACH --exclusive
+#SBATCH --mem=250G
+
+module load cfour/tblis
+
+export OMP_NUM_THREADS=36
+
+
+
+#export PATH=dummy_work:$PATH
+
+export workdir=dummyworkdir
+
+export PATH=~/group/jthorpe/bin/:$PATH
+
+# modify the basisdir if your cfour is not installed in ~/src/ dir.
+export basisdir=$HOME/src/cfour/basis
+
+export SCRATCH=dummyscratch
+
+export EXTRACT=$HOME/src/tensor-factorization/bin/extract.py
+
+mkdir -p $SCRATCH
+which xcfour
+
+cd $SCRATCH
+ls 
+cp $workdir/ZMAT ./
+cp $basisdir/GENBAS ./
+xcfour
+dummyextract
+
+cp *dat $workdir
+cd $workdir
+rm -rf $SCRATCH
+
+
+

@@ -1,0 +1,11 @@
+
+The following libraries must be available:
+    docopt.cpp (contained within this repo)
+    randutils (contained within this repo)
+    blas (modify Makefile in energyAnalysis/partialGridEnergy to direct make to correct lib.) 
+    lapack (modify Makefile in energyAnalysis/partialGridEnergy to direct make to correct lib.)
+
+To install this program, the following steps must be taken
+1. call `cmake .` in the docopt.cpp directory
+2. call `make all` in the top level direcotry (where this file lives)
+
